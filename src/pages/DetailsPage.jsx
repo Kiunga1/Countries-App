@@ -1,12 +1,12 @@
-import React from 'react'
+
 import Header from '../components/Header'
 import CountryDetails from '../components/CountryDetails'
 
-const DetailsPage = () => {
+const DetailsPage = ({ selectedCountry }) => {
   return (
-    <div>
+    <div className='  bg-bgColorLight dark:bg-bgColorDark'>
       <Header/>
-      <CountryDetails/>
+      <CountryDetails countryDetails={selectedCountry}/>
     </div>
   )
 }

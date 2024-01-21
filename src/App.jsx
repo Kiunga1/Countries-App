@@ -1,8 +1,9 @@
-
-import { Route, Routes } from 'react-router-dom'
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import DetailsPage from './pages/DetailsPage'
 import HomePage from './pages/HomePage'
+import DetailsPage from './pages/DetailsPage';
 
 
 function App() {
@@ -11,10 +12,9 @@ function App() {
   return (
     <div className='  bg-bgColorLight dark:bg-bgColorDark'>
      <Routes>
-      <Route path='/' element={<HomePage/>}/>
+      <Route exact path='/' element={<HomePage/>} />
       <Route path='/details' element={<DetailsPage/>}/>
      </Routes>
-
     </div>
   )
 }

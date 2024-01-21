@@ -7,18 +7,15 @@ import CountriesList from '../components/CountriesList';
 
 
 const HomePage = () => {
-  const [selectedRegion, setSelectedRegion] = useState('');
-
-  const handleRegionChange = (event) => {
-    setSelectedRegion(event.target.value);
-  };
-
+  
   return (
     <div>
         <Header/>
-        <SearchBar selectedRegion={selectedRegion} handleRegionChange={handleRegionChange} />
-        <CountriesList selectedRegion={selectedRegion} /> 
-      {/* <CountryDetails/> */}
+        
+        <CountriesList 
+        
+        /> 
+     
      
     </div>
   )
