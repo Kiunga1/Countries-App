@@ -60,13 +60,13 @@ const CountriesList = () => {
       <SearchBar onSearch={handleSearch} onRegionChange={handleRegionChange}/>
       <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-14 md:mx-20'>
         {currentCountries.map((country) => (
-          <Link to={`/country/${country.numericCode}`} key={country.numericCode}>
+          <Link to={`/country/${country.alpha2Code}`} key={country.alpha2Code}>
              <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55'>
             <span className='h-56'>
-              <img className='h-56 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+              <img className='h-56 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name}`} />
             </span>
             <div className='p-4'>
-              <h2 className='text-base font-bold text-primaryGray dark:text-primaryWhite pb-4'>{country.name.common}</h2>
+              <h2 className='text-base font-bold text-primaryGray dark:text-primaryWhite pb-4'>{country.name}</h2>
               <p className='text-primaryGray dark:text-primaryWhite font-semibold text-sm pb-2'>
                 Population: <span className='font-light'>{country.population}</span>
               </p>
@@ -81,13 +81,13 @@ const CountriesList = () => {
           </Link>
         ))}
       {/* Pagination buttons */}
-      <div className='p-10 flex justify-center mt-4'>
+      <div className='flex justify-center items-center mt-4 space-x-4 ml-64'>
         {Array.from({ length: Math.ceil(filteredCountries.length / countriesPerPage) }, (_, index) => (
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}
             className={`mx-2 px-4 py-2 border rounded ${
-              currentPage === index + 1 ? 'bg-primaryGray dark:text-white' : 'border-primaryGray'
+              currentPage === index + 1 ? 'bgColorLight dark:text-white' : 'border-primaryGray'
             }`}
           >
             {index + 1}
