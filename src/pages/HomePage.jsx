@@ -11,12 +11,8 @@ const HomePage = () => {
   return (
     <div>
         <Header/>
-        
         <CountriesList 
-        
         /> 
-     
-     
     </div>
   )
 }

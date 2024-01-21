@@ -13,7 +13,7 @@ function App() {
     <div className='  bg-bgColorLight dark:bg-bgColorDark'>
      <Routes>
       <Route exact path='/' element={<HomePage/>} />
-      <Route path='/details' element={<DetailsPage/>}/>
+      <Route path='/country/:id' element={<DetailsPage/>}/>
      </Routes>
     </div>
   )

@@ -3,10 +3,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const CountriesList = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const countriesPerPage = 32;
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -28,6 +31,7 @@ const CountriesList = () => {
       country.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredCountries(filtered);
+    setCurrentPage(1);
   }
   const handleRegionChange = (selectedRegion) => {
     // Handle region change filter countries based on the selected region
@@ -37,17 +41,27 @@ const CountriesList = () => {
       setFilteredCountries(countries);
     } else {
       // Filter countries based on the selected region
-      const filtered = countries.filter((country) => country.region === selectedRegion);
+      const filtered = countries.filter((country) => 
+      country.region.toLowerCase() === selectedRegion.toLowerCase());
       setFilteredCountries(filtered);
+      //Resets page when region changes
+      setCurrentPage(1);
     }
   };
+
+  // Calculate the index range of countries to display on the current page
+  const indexOfLastCountry = currentPage * countriesPerPage;
+  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+  const currentCountries = filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry);
+
 
   return (
     <div>
       <SearchBar onSearch={handleSearch} onRegionChange={handleRegionChange}/>
       <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-14 md:mx-20'>
-        {filteredCountries.map((country) => (
-          <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55'>
+        {currentCountries.map((country) => (
+          <Link to={`/country/${country.numericCode}`} key={country.numericCode}>
+             <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55'>
             <span className='h-56'>
               <img className='h-56 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name.common}`} />
             </span>
@@ -64,7 +78,22 @@ const CountriesList = () => {
               </p>
             </div>
           </div>
+          </Link>
         ))}
+      {/* Pagination buttons */}
+      <div className='p-10 flex justify-center mt-4'>
+        {Array.from({ length: Math.ceil(filteredCountries.length / countriesPerPage) }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={`mx-2 px-4 py-2 border rounded ${
+              currentPage === index + 1 ? 'bg-primaryGray dark:text-white' : 'border-primaryGray'
+            }`}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
       </div>
     </div>
   );

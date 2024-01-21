@@ -12,13 +12,13 @@ const SearchBar = ({ onSearch, onRegionChange }) => {
   const handleInputChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    onSearch(term, selectedRegion);
+    onSearch(term);
   };
 
   const handleRegionChange = (e) => {
     const region = e.target.value;
     setSelectedRegion(region);
-    onRegionChange(region, searchTerm);
+    onRegionChange(region);
   };
 
   return (
@@ -41,11 +41,11 @@ const SearchBar = ({ onSearch, onRegionChange }) => {
           value={selectedRegion}
         >
           <option value=''>Filter by Region</option>
-          <option value='Africa'>Africa</option>
-          <option value='Americas'>America</option>
-          <option value='Asia'>Asia</option>
-          <option value='Europe'>Europe</option>
-          <option value='Oceania'>Oceania</option>
+          <option value='africa'>Africa</option>
+          <option value='americas'>America</option>
+          <option value='asia'>Asia</option>
+          <option value='europe'>Europe</option>
+          <option value='oceania'>Oceania</option>
         </select>
       </div>
     </div>
