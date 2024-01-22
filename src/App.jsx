@@ -10,7 +10,7 @@ function App() {
   
 
   return (
-    <div className='  bg-bgColorLight dark:bg-bgColorDark'>
+    <div className=' bg-bgColorLight dark:bg-bgColorDark'>
      <Routes>
       <Route exact path='/' element={<HomePage/>} />
       <Route path='/country/:alpha2Code' element={<DetailsPage/>}/>

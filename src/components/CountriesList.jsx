@@ -9,7 +9,7 @@ const CountriesList = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const countriesPerPage = 32;
+  const countriesPerPage = 52;
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -61,7 +61,7 @@ const CountriesList = () => {
       <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-14 md:mx-20'>
         {currentCountries.map((country) => (
           <Link to={`/country/${country.alpha2Code}`} key={country.alpha2Code}>
-             <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55'>
+             <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55 rounded'>
             <span className='h-56'>
               <img className='h-56 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name}`} />
             </span>
@@ -81,12 +81,12 @@ const CountriesList = () => {
           </Link>
         ))}
       {/* Pagination buttons */}
-      <div className='flex justify-center items-center mt-4 space-x-4 ml-64'>
+      <div className='flex justify-center items-center mt-4 space-x-4 ml-4 sm:ml-0'>
         {Array.from({ length: Math.ceil(filteredCountries.length / countriesPerPage) }, (_, index) => (
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}
-            className={`mx-2 px-4 py-2 border rounded ${
+            className={`mx-1 sm:mx-2 px-3 py-2 border rounded text-sm ${
               currentPage === index + 1 ? 'bgColorLight dark:text-white' : 'border-primaryGray'
             }`}
           >
