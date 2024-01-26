@@ -42,28 +42,28 @@ const CountriesList = () => {
     } else {
       // Filter countries based on the selected region
       const filtered = countries.filter((country) => 
-      country.region.toLowerCase() === selectedRegion.toLowerCase());
+      country.region.toLowerCase() === selectedRegion.toLowerCase())
       setFilteredCountries(filtered);
       //Resets page when region changes
-      setCurrentPage(1);
+      setCurrentPage(1)
     }
   };
 
   // Calculate the index range of countries to display on the current page
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-  const currentCountries = filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry);
+  const currentCountries = filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry)
 
 
   return (
     <div>
       <SearchBar onSearch={handleSearch} onRegionChange={handleRegionChange}/>
-      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-14 md:mx-20'>
+      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-14 md:mx-20'>
         {currentCountries.map((country) => (
           <Link to={`/country/${country.alpha2Code}`} key={country.alpha2Code}>
-             <div key={country.numericCode} className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55 rounded'>
-            <span className='h-56'>
-              <img className='h-56 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name}`} />
+             <div  className='my-4 p-0 bg-white dark:bg-bgColorGray shadow w-55 rounded h-96'>
+            <span className=''>
+              <img className='h-44 rounded-t-md' src={country.flags.png} alt={`Flag of ${country.name}`} />
             </span>
             <div className='p-4'>
               <h2 className='text-base font-bold text-primaryGray dark:text-primaryWhite pb-4'>{country.name}</h2>
@@ -100,3 +100,4 @@ const CountriesList = () => {
 };
 
 export default CountriesList;
+

@@ -43,6 +43,7 @@ const SearchBar = ({ onSearch, onRegionChange }) => {
           <option value=''>Filter by Region</option>
           <option value='africa'>Africa</option>
           <option value='americas'>America</option>
+          <option value='antarctic'>Antarctic</option>
           <option value='asia'>Asia</option>
           <option value='europe'>Europe</option>
           <option value='oceania'>Oceania</option>

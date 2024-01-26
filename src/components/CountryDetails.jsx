@@ -9,24 +9,21 @@ const CountryDetails = () => {
   const [country, setCountry] = useState(null);
 
   useEffect(() => {
-    console.log(alpha2Code)
     const fetchCountryDetails = async () => {
       try {
         const response = await axios.get(`https://restcountries.com/v2/alpha/${alpha2Code}`);
-        setCountry(response.data);
-        console.log(response.data)
+        setCountry(response.data)
       } catch (error) {
-        console.error('Error fetching country details:', error);
+        console.error('Error fetching country details:', error)
       }
     };
-
     fetchCountryDetails();
-  }, [alpha2Code]);
+  }, [alpha2Code])
 
   return (
-    <div className='dark:bg-bgColorDark dark:text-primaryWhite h-screen px-3.5 py-7 md:px-20'>
+    <div className='dark:bg-bgColorDark dark:text-primaryWhite min-h-screen px-3.5 py-7 md:px-20'>
       <Link to='/'>
-        <div className=" ">
+        <div className="px-4 ">
           <button className='flex gap-2 px-6 py-2 bg-primaryWhite shadow rounded dark:bg-bgColorGray mb-16'>
             <span>
               <img className='dark:text-primaryWhite' src={Backarrow} alt="back arrow" />
@@ -37,13 +34,13 @@ const CountryDetails = () => {
       </Link>
 
       {country && (
-        <div className='lg:flex lg:justify-between gap-4'>
-          <span className='w-3/4'>
-            <img className="rounded md:h-80 " src={country.flags.png} alt={`Flag of ${country.name}`} />
+        <div className='px-4 lg:flex lg:justify-between gap-8'>
+          <span className='w-3/5'>
+            <img className="rounded md:h-80 w-55 " src={country.flags.png} alt={`Flag of ${country.name}`} />
           </span>
 
           <div className=" ">
-            <div className='lg:flex lg:justify-between  lg:gap-8'>
+            <div className=' lg:flex lg:justify-around  lg:gap-4'>
               <div>
                 <h2 className='font-bold text-primaryGray dark:text-primaryWhite text-4xl mb-6 mt-8'>{country.name}</h2>
 
@@ -80,9 +77,10 @@ const CountryDetails = () => {
                 Border Countries: 
                 {country.borders.map((border) => (
                       <Link to={`/country/${border}`} key={border}>
-                        <button className='border-b-2 mx-2 back p-2 px-6 py-2 rounded shadow dark:bg-bgColorGray'>{border}</button>
+                        <button className='p-2 px-6 m-2 rounded shadow dark:bg-bgColorGray'>{border}</button>
                       </Link>
                     ))}
+                    {/* border-b-2     py-2 */}
               </p>
             </div>
           </div>

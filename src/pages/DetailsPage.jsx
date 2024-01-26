@@ -5,7 +5,7 @@ import CountryDetails from '../components/CountryDetails'
 
 const DetailsPage = ({ selectedCountry }) => {
   return (
-    <div className='  bg-bgColorLight dark:bg-bgColorDark'>
+    <div className=' min-h-screen bg-bgColorLight dark:bg-bgColorDark'>
       <Header/>
       <CountryDetails countryDetails={selectedCountry}/>
     </div>
